@@ -29,6 +29,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             data = conn.recv(1024) # Receives data from the client.
                                    # bufsize reads up to 1024 bytes from the client.
                                    # This is a blocking call, meaning it waits until data is received.
+                                   # Important:
+                                   # If the client closes the connection, recv() will return an empty bytes object.
 
             if not data: # If no data is received, the connection is closed.
                 break
