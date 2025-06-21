@@ -1,6 +1,11 @@
 import socket
 
-HOST = ''  # Empty means that the server will listen on all available interfaces (both localhost and network IP).
+HOST = ''  # same as '0.0.0.0'
+# Empty means that the server will listen on all available interfaces of the machine (both localhost and network IP).
+# This allows the server to accept connections from any IP address that can reach it.   
+# If you want to restrict it to a specific IP address, you can set it to '
+
+
 LISTENING_PORT = 5000
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -23,6 +28,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         while True:
             data = conn.recv(1024) # Receives data from the client.
                                    # bufsize reads up to 1024 bytes from the client.
+                                   # This is a blocking call, meaning it waits until data is received.
 
             if not data: # If no data is received, the connection is closed.
                 break
